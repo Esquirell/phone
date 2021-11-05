@@ -50,4 +50,17 @@ class UserController extends Controller
         ]);
         User::create($validated);
     }
+
+    public function addPhoneForUser(Request $request)
+    {
+        $validated = $request->validate([
+            'id' => 'required|integer',
+            'number' => 'required|unique:phones|string|size:13'
+        ]);
+
+        $id = $validated['id'];
+        $number = $validated['number'];
+        $user = User::findOrFail($id);
+        $user->phones()->create(['number' => $number]);
+    }
 }
