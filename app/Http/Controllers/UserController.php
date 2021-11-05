@@ -21,4 +21,13 @@ class UserController extends Controller
 
         dd($user_name, $user_birth_date, $phones);
     }
+
+    public function refillBalance($number, $sum)
+    {
+        if ($sum > 0 && $sum <= 100) {
+            $phone = Phone::firstWhere('number', $number);
+            $phone->balance += $sum;
+            $phone->save();
+        }
+    }
 }
