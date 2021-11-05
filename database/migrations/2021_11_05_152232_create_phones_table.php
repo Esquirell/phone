@@ -16,8 +16,9 @@ class CreatePhonesTable extends Migration
         Schema::create('phones', function (Blueprint $table) {
             $table->id();
             $table->string('number')->unique();
-            $table->float('balance')->default(0.00);
-            $table->foreignId('user_id')->constrained('users');
+            $table->float('balance')->default(0);
+            $table->integer('code');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

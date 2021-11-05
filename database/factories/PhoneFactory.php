@@ -20,7 +20,8 @@ class PhoneFactory extends Factory
                 .$code_operators[$key]
                 .$this->faker
                     ->randomNumber(7,true),
-            'balance' => $this->faker->numberBetween(-5000, 15000)/100
+            'balance' => $this->faker->numberBetween(-5000, 15000)/100,
+            'code' => $code_operators[$key]
         ];
     }
 }
