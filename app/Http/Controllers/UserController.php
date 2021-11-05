@@ -41,4 +41,13 @@ class UserController extends Controller
             $phone->save();
         }
     }
+
+    public function createUser(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:50',
+            'birth_date' => 'required|string|size:10',
+        ]);
+        User::create($validated);
+    }
 }
