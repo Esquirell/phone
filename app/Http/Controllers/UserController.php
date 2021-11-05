@@ -63,4 +63,15 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->phones()->create(['number' => $number]);
     }
+
+    public function deleteUser(Request $request)
+    {
+        $validated = $request->validate([
+            'id' => 'required|integer',
+        ]);
+
+        $id = $validated['id'];
+        $user = User::findOrFail($id);
+        $user->delete();
+    }
 }
