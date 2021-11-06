@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/1', [\App\Http\Controllers\UserController::class, 'findUser']);
+Route::get('/1/{id}', [\App\Http\Controllers\UserController::class, 'findUser']);
 Route::post('/2', [\App\Http\Controllers\UserController::class, 'refillBalance']);
 Route::post('/3', [\App\Http\Controllers\UserController::class, 'addPhoneForUser']);
 Route::post('/4', [\App\Http\Controllers\UserController::class, 'deleteUser']);
