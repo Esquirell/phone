@@ -1,6 +1,6 @@
-1)
+п»ї1)
 
-SELECT name, SUM(balance) as Сумма_балансов
+SELECT name, SUM(balance) as РЎСѓРјРјР°_Р±Р°Р»Р°РЅСЃРѕРІ
 FROM
     users INNER JOIN phones
     	ON users.id = phones.user_id
@@ -8,13 +8,13 @@ GROUP BY name;
 
 2)
 
-SELECT code, COUNT(number) as Количество_номеров
+SELECT code, COUNT(number) as РљРѕР»РёС‡РµСЃС‚РІРѕ_РЅРѕРјРµСЂРѕРІ
 FROM phones
 GROUP BY code;
 
 3)
 
-SELECT name, COUNT(number) as Количество_телефонов
+SELECT name, COUNT(number) as РљРѕР»РёС‡РµСЃС‚РІРѕ_С‚РµР»РµС„РѕРЅРѕРІ
 FROM
     users INNER JOIN phones
         ON users.id = phones.user_id
@@ -22,11 +22,11 @@ GROUP BY name;
 
 4)
 
-SELECT name, SUM(balance) as Сумма_балансов
+SELECT name, SUM(balance) as РЎСѓРјРјР°_Р±Р°Р»Р°РЅСЃРѕРІ
 FROM
     users INNER JOIN phones
     	ON users.id = phones.user_id
 GROUP BY name
-ORDER BY Сумма_балансов DESC
+ORDER BY РЎСѓРјРјР°_Р±Р°Р»Р°РЅСЃРѕРІ DESC
 LIMIT 10;
 
