@@ -1,0 +1,32 @@
+1)
+
+SELECT name, SUM(balance) as Сумма_балансов
+FROM
+    users INNER JOIN phones
+    	ON users.id = phones.user_id
+GROUP BY name;
+
+2)
+
+SELECT code, COUNT(number) as Количество_номеров
+FROM phones
+GROUP BY code;
+
+3)
+
+SELECT name, COUNT(number) as Количество_телефонов
+FROM
+    users INNER JOIN phones
+        ON users.id = phones.user_id
+GROUP BY name;
+
+4)
+
+SELECT name, SUM(balance) as Сумма_балансов
+FROM
+    users INNER JOIN phones
+    	ON users.id = phones.user_id
+GROUP BY name
+ORDER BY Сумма_балансов DESC
+LIMIT 10;
+
