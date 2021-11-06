@@ -8,13 +8,11 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function findUser(Request $request)
+    /*
+     * Поиск пользователя по ID
+     */
+    public function findUser($id)
     {
-        $validated = $request->validate([
-            'id' => 'required|integer'
-        ]);
-
-        $id = $validated['id'];
         $user = User::with('phones')->findOrFail($id);
         $user_name = $user->name;
         $user_birth_date = $user->birth_date;
@@ -26,22 +24,25 @@ class UserController extends Controller
         dd($user_name, $user_birth_date, $phones);
     }
 
+    /*
+     * Пополнение баланса телефона не более чем на 100
+     */
     public function refillBalance(Request $request)
     {
         $validated = $request->validate([
             'number' => 'required|string|size:13',
             'sum' => 'required|integer|min:1|max:100'
         ]);
-
         $number = $validated['number'];
         $sum = $validated['sum'];
-        if ($sum > 0 && $sum <= 100) {
-            $phone = Phone::firstWhere('number', $number);
-            $phone->balance += $sum;
-            $phone->save();
-        }
+        $phone = Phone::firstWhere('number', $number);
+        $phone->balance += $sum;
+        $phone->save();
     }
 
+    /*
+     * Создание пользователя (без номера телефона)
+     */
     public function createUser(Request $request)
     {
         $validated = $request->validate([
@@ -51,6 +52,9 @@ class UserController extends Controller
         User::create($validated);
     }
 
+    /*
+     * Добавить телефон для пользователя (по ID пользователя)
+     */
     public function addPhoneForUser(Request $request)
     {
         $validated = $request->validate([
@@ -64,6 +68,9 @@ class UserController extends Controller
         $user->phones()->create(['number' => $number]);
     }
 
+    /*
+     * Удалить пользователя по ID
+     */
     public function deleteUser(Request $request)
     {
         $validated = $request->validate([

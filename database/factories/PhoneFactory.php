@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class PhoneFactory extends Factory
 {
     /**
-     * Define the model's default state.
+     * Создается случайный телефон со случайным балансом
      *
      * @return array
      */
